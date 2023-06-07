@@ -4,7 +4,7 @@
 **導入ガイドライン一覧**
 | ドキュメント名称 | 概要 |
 | - | - |
-| パーソナルデータ連携モジュール 構築ガイド |  |
+| [パーソナルデータ連携モジュール 構築ガイド](導入ガイドライン/linkage_build_guide.md) |  |
 | パーソナルデータ連携モジュール pxr-access-control-mange-service ビルド手順書 |  |
 | パーソナルデータ連携モジュール pxr-access-control-service ビルド手順書 |  |
 | パーソナルデータ連携モジュール pxr-binary-manage-service ビルド手順書 |  |
