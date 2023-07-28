@@ -29,7 +29,7 @@
 Unit Test 手順について記載・説明する。
 
 ###  1.1. <a name='-1'></a>前提条件
-- Node（12.22.10）がインストールされていること
+- Node（18.16.10）がインストールされていること
 - PostgreSQL（12.x）がインストールされていること
 - Docker（20.x）がインストールされていること
 
@@ -37,182 +37,107 @@ Unit Test 手順について記載・説明する。
 
 ##  2. <a name='-1'></a>ビルド手順
 pxr-operator-serviceのビルド手順について記載する。
-※本書では作業ディレクトリをホームディレクトリ配下としているが、任意のディレクトリを作業ディレクトリとすることも可能である(その場合は作業ディレクトリを読み替えて実行すること)。
+※本書では作業ディレクトリ（ [pxr-operator-service](https://github.com/Personal-Data-Linkage-Module/pxr-operator-service) ）をホームディレクトリ配下に配置した場合の例を記載する。
 
 ###  2.1. <a name='-1'></a>サービスをビルドする
-事前準備として、作業ディレクトリ配下に「pxr-operator-service」のプロジェクトを配置しておくこと。
+Linux 環境と Windows 環境でコマンドラインを利用する例を示す。
 以下のコマンドを実行し、エラーが出ないことを確認する。
 
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 46%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows（PowerShell）</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>$ cd ~/pxr-operator-service</p>
-<p>$ npm i</p>
-<p>$ npm run build</p></td>
-<td><p>$ cd ~/pxr-operator-service</p>
-<p>$ npm i</p>
-<p>$ npm run build</p></td>
-</tr>
-</tbody>
-</table>
+#### Linux環境のコマンド実行手順
+```
+$ cd ~/pxr-operator-service
+$ npm install --save-dev --legacy-peer-deps
+$ npm run build
+```
+
+#### Windows環境（PowerShell）のコマンド実行手順
+```
+$ cd ~/pxr-operator-service
+$ npm install --save-dev --legacy-peer-deps
+$ npm run build
+```
 
 ##  3. <a name='UnitTest'></a>Unit Test 手順
-pxr-operator-serviceの Unit Test 手順について記載する。
+pxr-operator-service の Unit Test 手順について記載する。
 
 ###  3.1. <a name='DB1'></a>DB を作成する（1環境につき初回のみ）
-以下を実行する。
-（Linux環境はコマンドラインで実行した例を、Windows環境ではpgAdmin4を利用した例を示す）
+Linux 環境でコマンドラインを利用する例と Windows 環境で pgAdmin4 を利用する例を示す。
 
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 46%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>$ psql -U postgres</p>
-<p>----</p>
-<p>postgres=# CREATE DATABASE pxr_pod</p>
-<p>WITH</p>
-<p>OWNER = postgres</p>
-<p>ENCODING = 'UTF8'</p>
-<p>LC_COLLATE = 'C'</p>
-<p>LC_CTYPE = 'C'</p>
-<p>TABLESPACE = pg_default</p>
-<p>CONNECTION LIMIT = -1</p>
-<p>;</p>
-<p>----</p></td>
-<td><p>・pgAdmin4を起動する</p>
-<p>・左のメニューからServers＞PostgreSQL
-12＞データベースの順に開き、データベースを右クリックして作成＞データベースを選択する</p>
-<p>・データベースに「pxr_pod」と入力して保存する</p></td>
-</tr>
-</tbody>
-</table>
+#### Linux環境のコマンド実行手順
+```
+$ psql -U postgres
+postgres=# CREATE DATABASE pxr_pod WITH
+postgres-# OWNER = postgres
+postgres-# ENCODING = 'UTF8'
+postgres-# LC_COLLATE = 'C'
+postgres-# LC_CTYPE = 'C'
+postgres-# TABLESPACE = pg_default
+postgres-# CONNECTION LIMIT = -1
+postgres-# TEMPLATE = template0
+postgres-# ;
+```
+
+#### Windows環境のpgAdmin4操作手順
+1. pgAdmin4を起動する
+1. 左のメニューからServers＞PostgreSQL12＞データベースの順に開き、データベースを右クリックして作成＞データベースを選択する
+1. データベースに「pxr_pod」と入力して保存する
 
 ###  3.2. <a name='SchemaTable1'></a>Schema, Tableを作成する（1環境につき初回のみ）
-事前準備として、作業ディレクトリ配下にddlディレクトリを配置しておくこと。
-以下を実行する。
-（Linux環境はコマンドラインで実行した例を、Windows環境ではpgAdmin4を利用した例を示す）
+Linux 環境でコマンドラインを利用する例と Windows 環境で pgAdmin4 を利用する例を示す。
 
-<table>
-<colgroup>
-<col style="width: 55%" />
-<col style="width: 44%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>$ cd ~/ddl/db/pxr-operator-service</p>
-<p>$ psql -U postgres -d pxr_pod -f createDB.sql</p>
-<p>$ psql -U postgres -d pxr_pod -f createTable.sql</p></td>
-<td><p>・2.2で作成したpxr_podを右クリックして、クエリツールを選択する</p>
-<p>・右側に表示された画面で、ファイルを開くを選択し、ddlリポジトリのdb\pxr-operator-service配下にあるcreateDB.sqlを開く</p>
-<p>・実行を選択し、「ログイン/グループロール」にpxr_operator_userが作成されていること、pxr_podのスキーマ配下にpxr_operatorが作成されていることを確認する</p>
-<p>・クエリツール画面で、ddlリポジトリのdb\pxr-operator-service配下にあるcreateTable.sqlを開いて、実行する</p></td>
-</tr>
-</tbody>
-</table>
+#### Linux環境のコマンド実行手順
+```
+$ cd ~/pxr-operator-service/ddl
+$ psql -U postgres -d pxr_pod -f createDB.sql
+$ psql -U pxr_operator_user -d pxr_pod -f createTable.sql
+$ psql -U pxr_operator_user -d pxr_pod -f operator_5170_alter.sql
+```
+
+#### Windows環境のpgAdmin4操作手順
+1. 2.2で作成したpxr_podを右クリックして、クエリツールを選択する
+1. 右側に表示された画面で、ファイルを開くを選択し、~\pxr-operator-service\ddl 配下にある createDB.sql を開く
+1. 実行を選択し、「ログイン/グループロール」に pxr_operator_user が作成されていること、pxr_pod のスキーマ配下に pxr_operator が作成されていることを確認する
+1. クエリツール画面で、 ~\pxr-operator-service\ddl 配下にあるcreateTable.sqlを開いて実行する
 
 ###  3.3. <a name='UnitTest-1'></a>Unit Testを実行する
 以下のコマンドを実行し、エラーが出ないことを確認する。
 
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 46%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows（PowerShell）</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>$ cd ~/pxr-operator-service</p>
-<p>$ npm run jest-clear</p>
-<p>$ npm run test:unit</p></td>
-<td><p>$ cd ~/pxr-operator-service</p>
-<p>$npm run jest-clear</p>
-<p>$ npm run test:unit</p></td>
-</tr>
-</tbody>
-</table>
+#### Linux環境のコマンド実行手順
+```
+$ cd ~/pxr-operator-service
+$ npm run jest-clear
+$ npm run test:unit
+```
+
+#### Windows環境（PowerShell）のコマンド実行手順
+```
+$ cd ~/pxr-operator-service
+$ npm run jest-clear
+$ npm run test:unit
+```
 
 ##  4. <a name='pxr-operator-service'></a>pxr-operator-service起動手順
 pxr-operator-serviceの起動手順について記載する。
 
 ###  4.1. <a name='pxr-operator-service-1'></a>pxr-operator-serviceを起動する
-以下のコマンドを実行する。
+Linux 環境と Windows 環境でコマンドラインを利用する例を示す。
+以下のコマンドを実行し、エラーが出ないことを確認する。
 
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 46%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows（PowerShell）</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>$ cd ~/pxr-operator-service</p>
-<p>$ npm run start</p></td>
-<td><p>$ cd ~/pxr-operator-service</p>
-<p>$ npm run start</p></td>
-</tr>
-</tbody>
-</table>
+#### Linux環境のコマンド実行手順
+```
+$ cd ~/pxr-operator-service
+$ npm run start
+```
+
+#### Windows環境（PowerShell）のコマンド実行手順
+```
+$ cd ~/pxr-operator-service
+$ npm run start
+```
 
 ###  4.2. <a name='Web'></a>Webブラウザでアクセスする
-以下を実行する。
+Webブラウザで http://localhost:3000/api-docs/ へアクセスし、Swaggerが表示されることを確認する。
 
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 46%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Webブラウザで以下にアクセスし、Swaggerが表示されること</p>
-<p><a
-href="http://localhost">http://localhost</a>:3000/api-docs/</p></td>
-<td><p>Webブラウザで以下にアクセスし、Swaggerが表示されること</p>
-<p><a
-href="http://localhost">http://localhost</a>:3000/api-docs/</p></td>
-</tr>
-</tbody>
-</table>
 
 ##  5. <a name='Docker'></a>Dockerコンテナイメージ作成手順
 Dockerコンテナイメージを作成する手順について記載する。
@@ -220,53 +145,33 @@ Dockerコンテナイメージを作成する手順について記載する。
 パーソナルデータ連携基盤_構築ガイド.docx
 
 ###  5.1. <a name='Docker-1'></a>Dockerコンテナイメージを作成する
-以下のコマンドを実行する。
+Linux 環境と Windows 環境でコマンドラインを利用する例を示す。
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 49%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows（PowerShell）</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>$ cd ~/pxr-operator-service</p>
-<p>$ docker build -t {イメージ名}:{タグ} .</p></td>
-<td><p>$ cd ~/pxr-operator-service</p>
-<p>$ docker build -t {イメージ名}:{タグ} .</p></td>
-</tr>
-</tbody>
-</table>
+#### Linux環境のコマンド実行手順
+```
+$ cd ~/pxr-operator-service
+$ docker build -t {イメージ名}:{タグ} .
+```
+
+#### Windows環境（PowerShell）のコマンド実行手順
+```
+$ cd ~/pxr-operator-service
+$ docker build -t {イメージ名}:{タグ} .
+```
 
 ###  5.2. <a name='Docker-1'></a>Dockerコンテナイメージをレジストリに登録する
-以下のコマンドを実行する。
+Linux 環境と Windows 環境でコマンドラインを利用する例を示す。
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 49%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows（PowerShell）</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>$ cd ~/pxr-operator-service</p>
-<p>$ docker tag {イメージ名}:{タグ}
-{Dockerリポジトリ名}/{イメージ名}:{タグ}</p>
-<p>$ docker push {Dockerリポジトリ名}/{イメージ名}:{タグ}</p></td>
-<td><p>$ cd ~/pxr-operator-service</p>
-<p>$ docker tag {イメージ名}:{タグ}
-{Dockerレジストリ名}/{イメージ名}:{タグ}</p>
-<p>$ docker push {Dockerレジストリ名}/{イメージ名}:{タグ}</p></td>
-</tr>
-</tbody>
-</table>
+#### Linux環境のコマンド実行手順
+```
+$ cd ~/pxr-operator-service
+$ docker tag {イメージ名}:{タグ} {Dockerリポジトリ名}/{イメージ名}:{タグ}
+$ docker push {Dockerリポジトリ名}/{イメージ名}:{タグ}
+```
+
+#### Windows環境（PowerShell）のコマンド実行手順
+```
+$ cd ~/pxr-operator-service
+$ docker tag {イメージ名}:{タグ} {Dockerリポジトリ名}/{イメージ名}:{タグ}
+$ docker push {Dockerリポジトリ名}/{イメージ名}:{タグ}
+```
