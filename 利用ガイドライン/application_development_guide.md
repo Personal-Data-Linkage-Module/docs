@@ -7051,7 +7051,7 @@ book-manage/ind/setting/share?id={userId}&amp;app={appCode}</p>
 
 レスポンス
 
-> {
+> [
 >
 > {
 >
@@ -7123,7 +7123,7 @@ book-manage/ind/setting/share?id={userId}&amp;app={appCode}</p>
 >
 > }
 >
-> }
+> ]
 
 ２．アプリケーションプロバイダー：ドキュメントの蓄積。
 
