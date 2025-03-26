@@ -74,7 +74,7 @@
 ###  1.5. <a name='-1'></a>環境構成
 本手順で説明する環境構成イメージを下図に示す。
 
-<img src="media/image3.emf" style="width:6.04167in;height:4.9375in" />
+<img src="image_linkage_build_guide/image001.png" style="width:6.04167in;height:4.9375in" />
 
 **図 1‑1 AWSを使用した環境構成イメージ**
 

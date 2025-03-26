@@ -155,7 +155,7 @@ PUT /pxr-block-proxy/&block=$pxr-root-block&path=/catalog/ext/{code}
 ###  2.1. <a name='-1'></a>**本モジュールの構成要素**
 AWSサービス利用を前提とした場合、本モジュールの構成要素は以下の通りです。
 
-<img src="media/image3.png" style="width:5.94722in;height:4.90694in" />
+<img src="image_application_development_guide/image001.png" style="width:5.94722in;height:4.90694in" />
 
 **図2-1. 本モジュールの構成図**
 
@@ -196,7 +196,7 @@ PxR-ServiceはKubernetes Containerとして、
 オペレーターサービス、通知サービス、NGINX等が搭載され、PxR-AP内に複数存在します。
 PxR-BlockとPxR-APは、アクターが行う業務に合わせたPxR-Serviceを搭載しています。共通で搭載されるサービスもあり、オペレーターの登録・認証を担うオペレーターサービスや、Block間通信のラッパーとなるPxR-Block-Proxyサービスなどが該当します。
 
-<img src="media/image4.png" style="width:4.70899in;height:3.43798in"
+<img src="image_application_development_guide/image002.png" style="width:4.70899in;height:3.43798in"
 alt="ダイアグラム 自動的に生成された説明" />
 
 **図2-2 PxR-Blockで使用するKubernetesの要素**
@@ -209,7 +209,7 @@ Serviceを使用します。
 
 流通制御サービスプロバイダーの場合
 
-<img src="media/image5.png" style="width:6.69306in;height:2.90347in"
+<img src="image_application_development_guide/image003.png" style="width:6.69306in;height:2.90347in"
 alt="ダイアグラム 自動的に生成された説明" />
 
 **図2-3 PxR-Blockの構成（流通制御サービスプロバイダー）**
@@ -222,7 +222,7 @@ NGINXはPxR-Serviceとしてカスタマイズしておらず、公開されて�
 
 流通制御サービスプロバイダー 運営メンバーの場合
 
-<img src="media/image8.png" style="width:6.69306in;height:2.84722in"
+<img src="image_application_development_guide/image004.png" style="width:6.69306in;height:2.84722in"
 alt="ダイアグラム, タイムライン 自動的に生成された説明" />
 
 **図2-5 PxR-Block外部からのAPI呼び出し（流通制御サービスプロバイダー）**
@@ -231,7 +231,7 @@ alt="ダイアグラム, タイムライン 自動的に生成された説明" /
 
 個人の場合
 
-<img src="media/image9.png" style="width:6.69306in;height:2.77778in"
+<img src="image_application_development_guide/image005.png" style="width:6.69306in;height:2.77778in"
 alt="ダイアグラム, タイムライン 自動的に生成された説明" />
 
 **図2-6 PxR-Block外部からのAPI呼び出し（個人）**
@@ -246,7 +246,7 @@ alt="ダイアグラム, タイムライン 自動的に生成された説明" /
 Block間でのAPI呼び出しは、有効期限を定めたAPIトークンを使用し認可を行います。
 PxR-Block-ProxyサービスがAPIトークンの発行と照合を担っています。
 
-<img src="media/image10.png" style="width:6.64583in;height:2.75847in" />
+<img src="image_application_development_guide/image006.png" style="width:4.583in;height:2.75847in" />
 
 **図2-7 PxR-Block間での協調動作**
 
@@ -895,9 +895,9 @@ Region利用者連携バッチ」を参照してください。
 
 以下の業務について、6.2以降で説明します。（※は必須手順ではありません）
 
-<img src="media/image11.emf" style="width:6.69306in;height:7.63611in" />
+<img src="image_application_development_guide/image007.png" style="width:6.69306in;height:7.63611in" />
 
-<img src="media/image12.emf" style="width:6.69306in;height:3.82153in" />
+<img src="image_application_development_guide/image008.png" style="width:6.69306in;height:3.82153in" />
 
 ###  6.2. <a name='-1'></a>**アクター認定**
 別紙『パーソナルデータ連携モジュール
