@@ -1248,6 +1248,55 @@ PxR-Root-Blockのアクターが、認定申請に対する認定承認、およ
 </tbody>
 </table>
 
+GETコマンドで使用可能なクエリパラメータ
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>パラメータ</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>is_send(送信履歴)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>is_unread(未読)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>is_approval(承認済)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>type(通知種別)</td>
+<td>通知:0 もしくは 承認要求:1</td>
+</tr>
+<tr class="odd">
+<td>from(対象期間(自))</td>
+<td>yyyy-MM-dd</td>
+</tr>
+<tr class="odd">
+<td>to(対象期間(至))</td>
+<td>yyyy-MM-dd</td>
+</tr>
+<tr class="odd">
+<td>num(件数)</td>
+<td>数値 （0は無制限）</td>
+</tr>
+</tbody>
+</table>
+
+リクエスト
+```
+なし
+```
+
   レスポンス例
 ```
 [
@@ -1482,7 +1531,7 @@ PxR-Root-Blockのアクターが、認定申請に対する認定承認、およ
 
   必要情報のattributes内serialNoに置き換える。
 
-  ・{ingerPrint}
+  ・{fingerPrint}
 
   必要情報のattributes内fingerPrintに置き換える。
 
@@ -1539,6 +1588,15 @@ PxR-Root-Blockのアクターが、認定申請に対する認定承認、およ
 </tbody>
 </table>
 
+  リクエスト
+```
+{
+    "certType": "client",
+    "serialNo": "【serialNo】",
+    "fingerPrint": "【fingerPrint】",
+    "certificate": "【クライアント証明書のRSA PRIVATE KEY】"
+}
+```
   ※リクエストは「3.6
   アクター認定承認、クライアント証明書の発行」で保存した内容（クライアント証明書）を使用する。
 
@@ -2636,6 +2694,55 @@ a.  削除対象のRegion-Root-Blockにログインする。
 </tbody>
 </table>
 
+GETコマンドで使用可能なクエリパラメータ
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>パラメータ</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>is_send(送信履歴)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>is_unread(未読)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>is_approval(承認済)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>type(通知種別)</td>
+<td>通知:0 もしくは 承認要求:1</td>
+</tr>
+<tr class="odd">
+<td>from(対象期間(自))</td>
+<td>yyyy-MM-dd</td>
+</tr>
+<tr class="odd">
+<td>to(対象期間(至))</td>
+<td>yyyy-MM-dd</td>
+</tr>
+<tr class="odd">
+<td>num(件数)</td>
+<td>数値 （0は無制限）</td>
+</tr>
+</tbody>
+</table>
+
+リクエスト
+```
+なし
+```
+
   レスポンス例
   ```
   [
@@ -2833,6 +2940,55 @@ Region終了」により対象の個人に通知される）
 </tbody>
 </table>
 
+GETコマンドで使用可能なクエリパラメータ
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>パラメータ</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>is_send(送信履歴)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>is_unread(未読)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>is_approval(承認済)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>type(通知種別)</td>
+<td>通知:0 もしくは 承認要求:1</td>
+</tr>
+<tr class="odd">
+<td>from(対象期間(自))</td>
+<td>yyyy-MM-dd</td>
+</tr>
+<tr class="odd">
+<td>to(対象期間(至))</td>
+<td>yyyy-MM-dd</td>
+</tr>
+<tr class="odd">
+<td>num(件数)</td>
+<td>数値 （0は無制限）</td>
+</tr>
+</tbody>
+</table>
+
+リクエスト
+```
+なし
+```
+
   レスポンス例
 ```
 [
@@ -3026,6 +3182,55 @@ Region終了」により対象の個人に通知される）
 </tr>
 </tbody>
 </table>
+
+GETコマンドで使用可能なクエリパラメータ
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>パラメータ</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>is_send(送信履歴)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>is_unread(未読)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>is_approval(承認済)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>type(通知種別)</td>
+<td>通知:0 もしくは 承認要求:1</td>
+</tr>
+<tr class="odd">
+<td>from(対象期間(自))</td>
+<td>yyyy-MM-dd</td>
+</tr>
+<tr class="odd">
+<td>to(対象期間(至))</td>
+<td>yyyy-MM-dd</td>
+</tr>
+<tr class="odd">
+<td>num(件数)</td>
+<td>数値 （0は無制限）</td>
+</tr>
+</tbody>
+</table>
+
+リクエスト
+```
+なし
+```
 
   レスポンス例
 ```
@@ -3645,6 +3850,55 @@ b.  利用者データを削除します。
 </tbody>
 </table>
 
+GETコマンドで使用可能なクエリパラメータ
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>パラメータ</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>is_send(送信履歴)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>is_unread(未読)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>is_approval(承認済)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>type(通知種別)</td>
+<td>通知:0 もしくは 承認要求:1</td>
+</tr>
+<tr class="odd">
+<td>from(対象期間(自))</td>
+<td>yyyy-MM-dd</td>
+</tr>
+<tr class="odd">
+<td>to(対象期間(至))</td>
+<td>yyyy-MM-dd</td>
+</tr>
+<tr class="odd">
+<td>num(件数)</td>
+<td>数値 （0は無制限）</td>
+</tr>
+</tbody>
+</table>
+
+リクエスト
+```
+なし
+```
+
   レスポンス例
  ```
  [
@@ -3928,6 +4182,55 @@ PxR-Root-Blockから個人の情報を取得して、解除されていない利
 </tr>
 </tbody>
 </table>
+
+GETコマンドで使用可能なクエリパラメータ
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>パラメータ</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>is_send(送信履歴)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>is_unread(未読)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>is_approval(承認済)</td>
+<td>true もしくは false</td>
+</tr>
+<tr class="odd">
+<td>type(通知種別)</td>
+<td>通知:0 もしくは 承認要求:1</td>
+</tr>
+<tr class="odd">
+<td>from(対象期間(自))</td>
+<td>yyyy-MM-dd</td>
+</tr>
+<tr class="odd">
+<td>to(対象期間(至))</td>
+<td>yyyy-MM-dd</td>
+</tr>
+<tr class="odd">
+<td>num(件数)</td>
+<td>数値 （0は無制限）</td>
+</tr>
+</tbody>
+</table>
+
+リクエスト
+```
+なし
+```
 
   レスポンス例
 ```
