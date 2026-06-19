@@ -45,6 +45,7 @@
 | パーソナルデータ連携モジュール 利用設定手順書 | 1.0 |
 | パーソナルデータ連携モジュール アプリケーション開発ガイド | 1.0 |
 | パーソナルデータ連携モジュール ビルド手順書 | 1.0 |
+| 初期カタログ投入手順補助資料 | 1.0 |
 
 ###  1.3. <a name='-1'></a>前提条件
 前提条件を以下に示す。
@@ -947,8 +948,16 @@ pxr-block-proxy-service-container.yaml
 
 1.  Deployment編集
 
-入手したdeploymentサンプルを編集する。コンテナimage指定部分を作成したイメージのURLを指定する。{イメージ名}:{タグ}をビルド手順書5.1.
-Dockerコンテナイメージを作成するイメージ名とタグに置き換える。
+入手したdeploymentサンプルを編集する。
+
+コンテナimage指定部分を作成したイメージのURLを指定する。
+以下のように{イメージ名}:{タグ}をビルド手順書5.1.Dockerコンテナイメージを作成するイメージ名とタグに置き換える。
+
+（変更前）
+　image: 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/{イメージ名}:{タグ}
+
+（変更例）
+　image: 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/pxr-operator-service:v1.0.0
 
 設定例：
 
@@ -1048,6 +1057,7 @@ idle_timeout.timeout_seconds=120</p>
 </table>
 
 1.  証明書とRSA鍵のSecretを作成
+　公的証明書、自己証明書のどちらでも問題はないが、本手順ではSSL自己証明書を作成している。
 
 サーバー証明書（server.crt）、RSA鍵（server.key）を作成する。
 
@@ -1180,7 +1190,9 @@ Podがrunning状態になっていることを確認する。
 <tr class="even">
 <td>pxr_root_actor_code</td>
 <td>1000431</td>
-<td>root/book-manage-service-container.yaml</td>
+<td>root/book-manage-service-container.yaml
+<p>common-configmap.yaml</p>
+</td>
 </tr>
 <tr class="odd">
 <td>pxr_root_block_code</td>
@@ -1350,6 +1362,7 @@ Podがrunning状態になっていることを確認する。
 
 ・CloudSearchのドメインにアクセスできること。
 
+
 1.  資材入手
 
 2.1で設定したカタログ資材を使って以下手順を実施する。
@@ -1362,6 +1375,8 @@ Podがrunning状態になっていることを確認する。
 |----------|
 
 1.  EC2踏み台サーバーでカタログ投入ツールを実行し、初期カタログを投入する。
+　※エラーが発生した場合は「初期カタログ投入手順補助資料」を参照（pxr-linkage/doc/導入ガイドライン/初期カタログ投入手順補助資料v1.0.pdf）
+
 
 パラメータ：
 
@@ -1440,6 +1455,8 @@ false, false, '{}', false, false, 'root_member001', 'root_member001',
 ###  3.1. <a name='-1'></a>ログイン
 
 構築した流通制御サービスプロバイダーの環境にログインできることを確認する。
+　※エラーが発生した場合は「初期カタログ投入手順補助資料」を参照（pxr-linkage/doc/導入ガイドライン/初期カタログ投入手順補助資料v1.0.pdf）
+
 
 パラメータ：
 
