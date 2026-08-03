@@ -53,28 +53,9 @@ pxr-access-control-serviceのビルド手順について記載する。
 事前準備として、作業ディレクトリ配下に「pxr-access-control-service」のプロジェクトを配置しておくこと。
 以下のコマンドを実行し、エラーが出ないことを確認する。
 
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 46%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows（PowerShell）</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>$ cd ~/pxr-access-control-service</p>
-<p>$ npm i</p>
-<p>$ npm run build</p></td>
-<td><p>$ cd ~/pxr-access-control-service</p>
-<p>$ npm i</p>
-<p>$ npm run build</p></td>
-</tr>
-</tbody>
-</table>
+| Linux | Windows（PowerShell） |
+| --- | --- |
+| `$ cd ~/pxr-access-control-service` `$ npm i` `$ npm run build` | `$ cd ~/pxr-access-control-service` `$ npm i` `$ npm run build` |
 
 ##  3. <a name='UnitTest'></a>Unit Test 手順
 pxr-access-control-serviceの Unit Test 手順について記載する。
@@ -83,93 +64,25 @@ pxr-access-control-serviceの Unit Test 手順について記載する。
 以下を実行する。
 （Linux環境はコマンドラインで実行した例を、Windows環境ではpgAdmin4を利用した例を示す）
 
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 46%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>$ psql -U postgres</p>
-<p>----</p>
-<p>postgres=# CREATE DATABASE pxr_pod</p>
-<p>WITH</p>
-<p>OWNER = postgres</p>
-<p>ENCODING = 'UTF8'</p>
-<p>LC_COLLATE = 'C'</p>
-<p>LC_CTYPE = 'C'</p>
-<p>TABLESPACE = pg_default</p>
-<p>CONNECTION LIMIT = -1</p>
-<p>;</p>
-<p>----</p></td>
-<td><p>・pgAdmin4を起動する</p>
-<p>・左のメニューからServers＞PostgreSQL
-12＞データベースの順に開き、データベースを右クリックして作成＞データベースを選択する</p>
-<p>・データベースに「pxr_pod」と入力して保存する</p></td>
-</tr>
-</tbody>
-</table>
+| Linux | Windows |
+| --- | --- |
+| `$ psql -U postgres`<br/>`postgres=# CREATE DATABASE pxr_pod`<br/>`WITH`<br/>`OWNER = postgres`<br/>`ENCODING = 'UTF8'`<br/>`LC_COLLATE = 'C'`<br/>`LC_CTYPE = 'C'`<br/>`TABLESPACE = pg_default`<br/>`CONNECTION LIMIT = -1` | ・pgAdmin4を起動する<br/>・左のメニューからServers＞PostgreSQL 12＞データベースの順に開き、データベースを右クリックして作成＞データベースを選択する<br/>・データベースに「pxr_pod」と入力して保存する |
 
 ###  3.2. <a name='SchemaTable1'></a>Schema, Tableを作成する（1環境につき初回のみ）
 事前準備として、作業ディレクトリ配下にddlディレクトリを配置しておくこと。
 以下を実行する。
 （Linux環境はコマンドラインで実行した例を、Windows環境ではpgAdmin4を利用した例を示す）
 
-<table>
-<colgroup>
-<col style="width: 55%" />
-<col style="width: 44%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>$ cd ~/ddl/db/pxr-access-control-service</p>
-<p>$ psql -U postgres -d pxr_pod -f createDB.sql</p>
-<p>$ psql -U postgres -d pxr_pod -f createTable.sql</p></td>
-<td><p>・2.2で作成したpxr_podを右クリックして、クエリツールを選択する</p>
-<p>・右側に表示された画面で、ファイルを開くを選択し、ddlリポジトリのdb\pxr-access-control-service配下にあるcreateDB.sqlを開く</p>
-<p>・実行を選択し、「ログイン/グループロール」にpxr_access_control_userが作成されていること、pxr_podのスキーマ配下にpxr_access_controlが作成されていることを確認する</p>
-<p>・クエリツール画面で、ddlリポジトリのdb\pxr-access-control-service配下にあるcreateTable.sqlを開いて、実行する</p></td>
-</tr>
-</tbody>
-</table>
+| Linux | Windows |
+| --- | --- |
+| `$ cd ~/ddl/db/pxr-access-control-service` `$ psql -U postgres -d pxr_pod -f createDB.sql` `$ psql -U postgres -d pxr_pod -f createTable.sql` | ・2.2で作成したpxr_podを右クリックして、クエリツールを選択する<br/>・右側に表示された画面で、ファイルを開くを選択し、ddlリポジトリの`db\pxr-access-control-service`配下にある`createDB.sql`を開く<br/>・実行を選択し、「ログイン/グループロール」に`pxr_access_control_user`が作成されていること、pxr_podのスキーマ配下に`pxr_access_control`が作成されていることを確認する<br/>・クエリツール画面で、ddlリポジトリの`db\pxr-access-control-service`配下にある`createTable.sql`を開いて、実行する |
 
 ###  3.3. <a name='UnitTest-1'></a>Unit Testを実行する
 以下のコマンドを実行し、エラーが出ないことを確認する。
 
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 46%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows（PowerShell）</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>$ cd ~/pxr-access-control-service</p>
-<p>$ npm run jest-clear</p>
-<p>$ npm run test:unit</p></td>
-<td><p>$ cd ~/pxr-access-control-service</p>
-<p>$npm run jest-clear</p>
-<p>$ npm run test:unit</p></td>
-</tr>
-</tbody>
-</table>
+| Linux | Windows（PowerShell） |
+| --- | --- |
+| `$ cd ~/pxr-access-control-service` `$ npm run jest-clear` `$ npm run test:unit` | `$ cd ~/pxr-access-control-service` `$ npm run jest-clear` `$ npm run test:unit` |
 
 ##  4. <a name='pxr-access-control-service'></a>pxr-access-control-service起動手順
 pxr-access-control-serviceの起動手順について記載する。
@@ -177,52 +90,16 @@ pxr-access-control-serviceの起動手順について記載する。
 ###  4.1. <a name='pxr-access-control-service-1'></a>pxr-access-control-serviceを起動する
 以下のコマンドを実行する。
 
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 46%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows（PowerShell）</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>$ cd ~/pxr-access-control-service</p>
-<p>$ npm run start</p></td>
-<td><p>$ cd ~/pxr-access-control-service</p>
-<p>$ npm run start</p></td>
-</tr>
-</tbody>
-</table>
+| Linux | Windows（PowerShell） |
+| --- | --- |
+| `$ cd ~/pxr-access-control-service` `$ npm run start` | `$ cd ~/pxr-access-control-service` `$ npm run start` |
 
 ###  4.2. <a name='Web'></a>Webブラウザでアクセスする
 以下を実行する。
 
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 46%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Webブラウザで以下にアクセスし、Swaggerが表示されること</p>
-<p><a
-href="http://localhost">http://localhost</a>:3015/api-docs/</p></td>
-<td><p>Webブラウザで以下にアクセスし、Swaggerが表示されること</p>
-<p><a
-href="http://localhost">http://localhost</a>:3015/api-docs/</p></td>
-</tr>
-</tbody>
-</table>
+| Linux | Windows |
+| --- | --- |
+| Webブラウザで以下にアクセスし、Swaggerが表示されること<br/>`http://localhost:3015/api-docs/` | Webブラウザで以下にアクセスし、Swaggerが表示されること<br/>`http://localhost:3015/api-docs/` |
 
 ##  5. <a name='Docker'></a>Dockerコンテナイメージ作成手順
 Dockerコンテナイメージを作成する手順について記載する。
@@ -232,51 +109,13 @@ Dockerコンテナイメージを作成する手順について記載する。
 ###  5.1. <a name='Docker-1'></a>Dockerコンテナイメージを作成する
 以下のコマンドを実行する。
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 49%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows（PowerShell）</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>$ cd ~/pxr-access-control-service</p>
-<p>$ docker build -t {イメージ名}:{タグ} .</p></td>
-<td><p>$ cd ~/pxr-access-control-service</p>
-<p>$ docker build -t {イメージ名}:{タグ} .</p></td>
-</tr>
-</tbody>
-</table>
+| Linux | Windows（PowerShell） |
+| --- | --- |
+| `$ cd ~/pxr-access-control-service` `$ docker build -t {イメージ名}:{タグ} .` | `$ cd ~/pxr-access-control-service` `$ docker build -t {イメージ名}:{タグ} .` |
 
 ###  5.2. <a name='Docker-1'></a>Dockerコンテナイメージをレジストリに登録する
 以下のコマンドを実行する。
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 49%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Linux</th>
-<th>Windows（PowerShell）</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>$ cd ~/pxr-access-control-service</p>
-<p>$ docker tag {イメージ名}:{タグ}
-{Dockerリポジトリ名}/{イメージ名}:{タグ}</p>
-<p>$ docker push {Dockerリポジトリ名}/{イメージ名}:{タグ}</p></td>
-<td><p>$ cd ~/pxr-access-control-service</p>
-<p>$ docker tag {イメージ名}:{タグ}
-{Dockerレジストリ名}/{イメージ名}:{タグ}</p>
-<p>$ docker push {Dockerレジストリ名}/{イメージ名}:{タグ}</p></td>
-</tr>
-</tbody>
-</table>
+| Linux | Windows（PowerShell） |
+| --- | --- |
+| `$ cd ~/pxr-access-control-service` `$ docker tag {イメージ名}:{タグ} {Dockerリポジトリ名}/{イメージ名}:{タグ}` `$ docker push {Dockerリポジトリ名}/{イメージ名}:{タグ}` | `$ cd ~/pxr-access-control-service` `$ docker tag {イメージ名}:{タグ} {Dockerレジストリ名}/{イメージ名}:{タグ}` `$ docker push {Dockerレジストリ名}/{イメージ名}:{タグ}` |
