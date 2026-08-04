@@ -64,17 +64,18 @@
 	* 6.3. [**Region開始**](#Region-1)
 	* 6.4. [**Region参加**](#Region-1)
 	* 6.5. [**データカタログ作成**](#-1)
-	* 6.6. [**My-Condition-Bookの開設**](#My-Condition-Book)
-	* 6.7. [**Regionとの利用者ID連携**](#RegionID)
-	* 6.8. [**アプリケーションとの利用者ID連携**](#ID)
-	* 6.9. [**蓄積の定義**](#-1)
-	* 6.10. [**共有の定義**](#-1)
-	* 6.11. [**My-Condition-Dataの蓄積**](#My-Condition-Data)
-	* 6.12. [**My-Condition-Dataの共有**](#My-Condition-Data-1)
-	* 6.13. [**個人の離脱**](#-1)
-	* 6.14. [**Region終了**](#Region-1)
-	* 6.15. [**アクター終了**](#-1)
-	* 6.16. [**【参考】データカタログの取得**](#-1)
+	* 6.6. [**アプリケーション作成**](#アプリケーション作成)
+	* 6.7. [**My-Condition-Bookの開設**](#My-Condition-Book)
+	* 6.8. [**Regionとの利用者ID連携**](#RegionID)
+	* 6.9. [**アプリケーションとの利用者ID連携**](#ID)
+	* 6.10. [**蓄積の定義**](#-1)
+	* 6.11. [**共有の定義**](#-1)
+	* 6.12. [**My-Condition-Dataの蓄積**](#My-Condition-Data)
+	* 6.13. [**My-Condition-Dataの共有**](#My-Condition-Data-1)
+	* 6.14. [**個人の離脱**](#-1)
+	* 6.15. [**Region終了**](#Region-1)
+	* 6.16. [**アクター終了**](#-1)
+	* 6.17. [**【参考】データカタログの取得**](#-1)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -603,7 +604,7 @@ SMS認証を利用する場合、ワンタイムログインコードを生成�
 <tr class="even">
 <td>SMS検証コード検証</td>
 <td>検証コードIDコードおよびSMS検証コードを受け、検証結果を返却します。</td>
-<td>POST /operator/ind/sms-verificate/verifiy</td>
+<td>POST /operator/ind/sms-verificate/verify</td>
 </tr>
 </tbody>
 </table>
@@ -2447,7 +2448,2055 @@ Region利用者連携バッチ」を参照してください。
 >
 > }
 
-###  6.6. <a name='My-Condition-Book'></a>**My-Condition-Bookの開設**
+###  6.6. <a name='アプリケーション作成'></a>**アプリケーション作成**
+
+１．アプリケーションプロバイダー：アプリケーションの蓄積定義を設定する。
+
+| サービス名称     | API名称        | メソッドおよびパス                                              |
+|-------------------|----------|--------------------------------------------|
+| カタログ更新サービス | データ操作定義取得 | POST /pxr-block-proxy/pxr-block-proxy/?path=/catalog-update/data-operation |
+
+※事前に6.4.1アプリケーションプロバイダー：ログインを実施すること。
+
+リクエスト
+
+> {
+> 
+> "name": "～～蓄積定義カタログ",
+> 
+> "description": null,
+> 
+> "type": 1,
+> 
+> "ns": \[\],
+> 
+> "catalog": \[
+> 
+> {
+> 
+> "type": 1,
+> 
+> "catalogCode": null,
+> 
+> "template": {
+> 
+> "catalogItem": {
+> 
+> "ns": "catalog/ext/pxross-prod/actor/app/actor\_1000XXX/store",
+> 
+> "name": "～～蓄積定義",
+> 
+> "\_code": null,
+> 
+> "inherit": {
+> 
+> "\_value": 39,
+> 
+> "\_ver": 1
+> 
+> },
+> 
+> "description": "～～が蓄積可能なデータ定義です。"
+> 
+> },
+> 
+> "attribute": \[\],
+> 
+> "inner": null,
+> 
+> "template": {
+> 
+> "prop": null,
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_code",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "store",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "id",
+> 
+> "value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx"
+> 
+> },
+> 
+> {
+> 
+> "key": "event",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "code",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "requireConsent",
+> 
+> "value": true
+> 
+> },
+> 
+> {
+> 
+> "key": "thing",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "code",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "requireConsent",
+> 
+> "value": true
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> }
+> 
+> }
+> 
+> \],
+> 
+> "appendix": \[\]
+> 
+> }
+
+レスポンス
+
+> {
+> 
+> "name": "～～蓄積定義カタログ",
+> 
+> "description": null,
+> 
+> "type": null,
+> 
+> "callerActorCode": 1000XXX,
+> 
+> "approvalActorCode": 1000XXX,
+> 
+> "approver": "app-operator",
+> 
+> "approvalAt": "YYYY-MM-DDTHH:MM:SS.sss+0900",
+> 
+> "comment": null,
+> 
+> "status": 1,
+> 
+> "registerActorCode": 1000XXX,
+> 
+> "register": "app-operator",
+> 
+> "registAt": "YYYY-MM-DDTHH:MM:SS.sss+0900",
+> 
+> "ns": null,
+> 
+> "catalog": \[
+> 
+> {
+> 
+> "type": 1,
+> 
+> "catalogCode": null,
+> 
+> "comment": null,
+> 
+> "template": {
+> 
+> "catalogItem": {
+> 
+> "ns": "catalog/ext/pxross-prod/actor/app/actor\_1000XXX/store",
+> 
+> "name": "～～蓄積定義",
+> 
+> "\_code": {
+> 
+> "\_value": 1000XXX,
+> 
+> "\_ver": 1
+> 
+> },
+> 
+> "inherit": {
+> 
+> "\_value": 39,
+> 
+> "\_ver": 1
+> 
+> },
+> 
+> "description": "～～が蓄積可能なデータ定義です。"
+> 
+> },
+> 
+> "attribute": \[\],
+> 
+> "inner": null,
+> 
+> "template": {
+> 
+> "prop": null,
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_code",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "store",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "id",
+> 
+> "value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx"
+> 
+> },
+> 
+> {
+> 
+> "key": "event",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "code",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "requireConsent",
+> 
+> "value": true
+> 
+> },
+> 
+> {
+> 
+> "key": "thing",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "code",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "requireConsent",
+> 
+> "value": true
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> }
+> 
+> }
+> 
+> \],
+> 
+> "appendix": \[\],
+> 
+> "attribute": null,
+> 
+> "id": 1,
+> 
+> "applicationActorCode": 1000XXX,
+> 
+> "applicationBlockCode": 1000XXX,
+> 
+> "applicationAt": "YYYY-MM-DDTHH:MM:SS.sss+0900",
+> 
+> "isDraft": false
+> 
+> }
+
+２．アプリケーションプロバイダー：アプリケーションの共有定義を設定する。
+
+| サービス名称     | API名称        | メソッドおよびパス                                              |
+|-------------------|----------|--------------------------------------------|
+| カタログ更新サービス | データ操作定義取得 | POST /pxr-block-proxy/pxr-block-proxy/?path=/catalog-update/data-operation |
+
+※事前に6.4.1アプリケーションプロバイダー：ログインを実施すること。
+
+リクエスト
+
+> {
+> 
+> "name": "～～共有定義カタログ",
+> 
+> "description": null,
+> 
+> "type": 1,
+> 
+> "ns": \[\],
+> 
+> "catalog": \[
+> 
+> {
+> 
+> "type": 1,
+> 
+> "catalogCode": null,
+> 
+> "template": {
+> 
+> "catalogItem": {
+> 
+> "ns": "catalog/ext/pxross-prod/actor/app/actor\_1000XXX/share",
+> 
+> "name": "～～共有定義",
+> 
+> "\_code": null,
+> 
+> "inherit": {
+> 
+> "\_value": 40,
+> 
+> "\_ver": 1
+> 
+> },
+> 
+> "description": "～～が提供する状態共有機能の定義です。"
+> 
+> },
+> 
+> "attribute": \[\],
+> 
+> "inner": null,
+> 
+> "template": {
+> 
+> "prop": null,
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "share",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "id",
+> 
+> "value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx"
+> 
+> },
+> 
+> {
+> 
+> "key": "role",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "event",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "code",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "requireConsent",
+> 
+> "value": true
+> 
+> },
+> 
+> {
+> 
+> "key": "thing",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "code",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "requireConsent",
+> 
+> "value": true
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> }
+> 
+> }
+> 
+> \],
+> 
+> "appendix": \[\]
+> 
+> }
+
+レスポンス
+
+> {
+> 
+> "name": "～～共有定義カタログ",
+> 
+> "description": null,
+> 
+> "type": null,
+> 
+> "callerActorCode": 1000XXX,
+> 
+> "approvalActorCode": 1000XXX,
+> 
+> "approver": "app-operator",
+> 
+> "approvalAt": "YYYY-MM-DDTHH:MM:SS.sss+0900",
+> 
+> "comment": null,
+> 
+> "status": 1,
+> 
+> "registerActorCode": 1000XXX,
+> 
+> "register": "app-operator",
+> 
+> "registAt": "YYYY-MM-DDTHH:MM:SS.sss+0900",
+> 
+> "ns": null,
+> 
+> "catalog": \[
+> 
+> {
+> 
+> "type": 1,
+> 
+> "catalogCode": null,
+> 
+> "comment": null,
+> 
+> "template": {
+> 
+> "catalogItem": {
+> 
+> "ns": "catalog/ext/pxross-prod/actor/app/actor\_1000XXX/share",
+> 
+> "name": "～～共有定義",
+> 
+> "\_code": {
+> 
+> "\_value": 1000XXX,
+> 
+> "\_ver": 1
+> 
+> },
+> 
+> "inherit": {
+> 
+> "\_value": 40,
+> 
+> "\_ver": 1
+> 
+> },
+> 
+> "description": "～～が提供する状態共有機能の定義です。"
+> 
+> },
+> 
+> "attribute": \[\],
+> 
+> "inner": null,
+> 
+> "template": {
+> 
+> "prop": null,
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "share",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "id",
+> 
+> "value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx"
+> 
+> },
+> 
+> {
+> 
+> "key": "role",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "event",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "code",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "requireConsent",
+> 
+> "value": true
+> 
+> },
+> 
+> {
+> 
+> "key": "thing",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "code",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "requireConsent",
+> 
+> "value": true
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> }
+> 
+> }
+> 
+> \],
+> 
+> "appendix": \[\],
+> 
+> "attribute": null,
+> 
+> "id": 2,
+> 
+> "applicationActorCode": 1000XXX,
+> 
+> "applicationBlockCode": 1000XXX,
+> 
+> "applicationAt": "YYYY-MM-DDTHH:MM:SS.sss+0900",
+> 
+> "isDraft": false
+> 
+> }
+
+３．アプリケーションプロバイダー：アプリケーションを作成する。
+
+| サービス名称     | API名称        | メソッドおよびパス                                              |
+|-------------------|----------|--------------------------------------------|
+| カタログサービス | 変更セット登録 | POST /pxr-block-proxy/pxr-block-proxy/?path=/catalog/updateSet/register |
+
+※事前に6.4.1アプリケーションプロバイダー：ログインを実施すること。
+
+リクエスト
+
+> {
+> 
+> "name": "～～アプリカタログ",
+> 
+> "description": null,
+> 
+> "type": 1,
+> 
+> "ns": \[\],
+> 
+> "catalog": \[
+> 
+> {
+> 
+> "type": 1,
+> 
+> "catalogCode": null,
+> 
+> "template": {
+> 
+> "catalogItem": {
+> 
+> "ns": "catalog/ext/pxross-prod/actor/app/actor\_1000XXX/application",
+> 
+> "name": "～～アプリ",
+> 
+> "\_code": null,
+> 
+> "inherit": {
+> 
+> "\_value": 41,
+> 
+> "\_ver": 1
+> 
+> },
+> 
+> "description": {
+> 
+> "title": null,
+> 
+> "section": \[
+> 
+> {
+> 
+> "title": "～～アプリの定義",
+> 
+> "content": \[
+> 
+> {
+> 
+> "sentence": "～～アプリの定義です。"
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> },
+> 
+> "attribute": \[\],
+> 
+> "inner": null,
+> 
+> "template": {
+> 
+> "prop": null,
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_code",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "information-site",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "redirect\_url",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "region-alliance",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "share",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "store",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> }
+> 
+> }
+> 
+> \],
+> 
+> "appendix": \[\]
+> 
+> }
+
+レスポンス
+
+> {
+> 
+> "id": 9,
+> 
+> "name": "～～アプリ",
+> 
+> "description": null,
+> 
+> "callerActorCode": 1000XXX,
+> 
+> "approvalActorCode": null,
+> 
+> "approver": null,
+> 
+> "approvalAt": null,
+> 
+> "comment": null,
+> 
+> "status": 0,
+> 
+> "registerActorCode": 1000XXX,
+> 
+> "register": "app-operator",
+> 
+> "registAt": "YYYY-MM-DDTHH:MM:SS.sss+0900",
+> 
+> "ns": null,
+> 
+> "catalog": \[
+> 
+> {
+> 
+> "type": 1,
+> 
+> "catalogCode": null,
+> 
+> "comment": null,
+> 
+> "template": {
+> 
+> "catalogItem": {
+> 
+> "ns": "catalog/ext/pxross-prod/actor/app/actor\_1000XXX/application",
+> 
+> "name": "～～アプリ",
+> 
+> "\_code": null,
+> 
+> "inherit": {
+> 
+> "\_value": 41,
+> 
+> "\_ver": 1
+> 
+> },
+> 
+> "description": {
+> 
+> "title": null,
+> 
+> "section": \[
+> 
+> {
+> 
+> "title": "～～アプリの定義",
+> 
+> "content": \[
+> 
+> {
+> 
+> "sentence": "～～アプリの定義です。"
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> },
+> 
+> "attribute": \[\],
+> 
+> "inner": null,
+> 
+> "template": {
+> 
+> "prop": null,
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_code",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "information-site",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "redirect\_url",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "region-alliance",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "share",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "store",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> }
+> 
+> }
+> 
+> \],
+> 
+> "attribute": null,
+> 
+> "appendix": \[\]
+> 
+> }
+
+４．アプリケーションプロバイダー：アプリケーション作成申請する。※自己承認
+
+| サービス名称     | API名称        | メソッドおよびパス                                              |
+|-------------------|----------|--------------------------------------------|
+| カタログ更新サービス | 変更セット申請 | POST /pxr-block-proxy/pxr-block-proxy/?path=/catalog-update/updateSet/request |
+
+※事前に6.4.1アプリケーションプロバイダー：ログインを実施すること。
+
+リクエスト
+
+> {
+> 
+> "id": 9,
+> 
+> "approvalActor": 1000XXX
+> 
+> }
+
+レスポンス
+
+> {
+> 
+> "id": 9,
+> 
+> "name": "～～アプリ",
+> 
+> "description": null,
+> 
+> "callerActorCode": 1000XXX,
+> 
+> "approvalActorCode": 1000XXX,
+> 
+> "approver": "app-operator",
+> 
+> "approvalAt": "YYYY-MM-DDTHH:MM:SS.sss+0900",
+> 
+> "comment": null,
+> 
+> "status": 1,
+> 
+> "registerActorCode": 1000XXX,
+> 
+> "register": "app-operator",
+> 
+> "registAt": "YYYY-MM-DDTHH:MM:SS.sss+0900",
+> 
+> "ns": null,
+> 
+> "catalog": \[
+> 
+> {
+> 
+> "type": 1,
+> 
+> "catalogCode": null,
+> 
+> "comment": null,
+> 
+> "template": {
+> 
+> "catalogItem": {
+> 
+> "ns": "catalog/ext/pxross-prod/actor/app/actor\_1000XXX/application",
+> 
+> "name": "～～アプリ",
+> 
+> "\_code": {
+> 
+> "\_value": 1000XXX,
+> 
+> "\_ver": 1
+> 
+> },
+> 
+> "inherit": {
+> 
+> "\_value": 41,
+> 
+> "\_ver": 1
+> 
+> },
+> 
+> "description": {
+> 
+> "title": null,
+> 
+> "section": \[
+> 
+> {
+> 
+> "title": "～～アプリの定義",
+> 
+> "content": \[
+> 
+> {
+> 
+> "sentence": "～～アプリの定義です。"
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> },
+> 
+> "attribute": \[\],
+> 
+> "inner": null,
+> 
+> "template": {
+> 
+> "prop": null,
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_code",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "information-site",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "redirect\_url",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "region-alliance",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "share",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "store",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> }
+> 
+> }
+> 
+> \],
+> 
+> "appendix": \[\]
+> 
+> }
+
+５．アプリケーションプロバイダー：アプリケーションのアクター情報を取得する。
+
+| サービス名称     | API名称        | メソッドおよびパス                                              |
+|-------------------|----------|--------------------------------------------|
+| カタログサービス | カタログ取得 | GET /pxr-block-proxy/pxr-block-proxy/?path=/catalog?ns=catalog/ext/{環境名}/actor/app |
+
+※事前に6.4.1アプリケーションプロバイダー：ログインを実施すること。
+
+リクエスト
+
+なし
+
+レスポンス
+
+省略
+
+６．アプリケーションプロバイダー：アプリケーションのアクターを更新する。
+
+| サービス名称     | API名称        | メソッドおよびパス                                              |
+|-------------------|----------|--------------------------------------------|
+| カタログサービス | 変更セット登録 | POST /pxr-block-proxy/pxr-block-proxy/?path=/catalog/updateSet/register |
+
+※事前に6.4.1アプリケーションプロバイダー：ログインを実施すること。
+
+リクエスト
+
+> {
+> 
+> "name": "アクターカタログ",
+> 
+> "description": null,
+> 
+> "type": 1,
+> 
+> "ns": \[\],
+> 
+> "catalog": \[
+> 
+> {
+> 
+> "type": 2,
+> 
+> "catalogCode": 1000XXX,
+> 
+> "template": {
+> 
+> "catalogItem": {
+> 
+> "ns": "catalog/ext/{環境名}/actor/app",
+> 
+> "name": "～～アプリ運営事業者",
+> 
+> "\_code": {
+> 
+> "\_value": 1000XXX,
+> 
+> "\_ver": 2
+> 
+> },
+> 
+> "inherit": {
+> 
+> "\_value": 42,
+> 
+> "\_ver": 1
+> 
+> },
+> 
+> "description": "～～アプリ運営事業者の定義です。"
+> 
+> },
+> 
+> "template": {
+> 
+> "prop": null,
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_code",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "application",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "breakaway-flg",
+> 
+> "value": false
+> 
+> },
+> 
+> {
+> 
+> "key": "category",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "information-site",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "main-block",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "other-block",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "statement",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "title",
+> 
+> "value": "～～アプリ運営事業者のステートメント"
+> 
+> },
+> 
+> {
+> 
+> "key": "section",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "title",
+> 
+> "value": "～～アプリ運営事業者のステートメントの定義"
+> 
+> },
+> 
+> {
+> 
+> "key": "content",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "sentence",
+> 
+> "value": "～～アプリ運営事業者のステートメントの定義です。"
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "status",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "status",
+> 
+> "value": "certified"
+> 
+> },
+> 
+> {
+> 
+> "key": "by",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "at",
+> 
+> "value": "YYYY-MM-DDTHH:MM:SS.sss+0900"
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> "inner": null,
+> 
+> "attribute": null
+> 
+> }
+> 
+> }
+> 
+> \],
+> 
+> "appendix": \[\]
+> 
+> }
+
+レスポンス
+
+なし
+
+７．アプリケーションプロバイダー：アプリケーションのアクターを更新申請する。※自己承認
+
+| サービス名称     | API名称        | メソッドおよびパス                                              |
+|-------------------|----------|--------------------------------------------|
+| カタログサービス | 変更セット申請 | POST /pxr-block-proxy/pxr-block-proxy/?path=/catalog-update/updateSet/request |
+
+※事前に6.4.1アプリケーションプロバイダー：ログインを実施すること。
+
+リクエスト
+
+> {
+> 
+> "id": 10,
+> 
+> "approvalActor": 1000XXX
+> 
+> }
+
+レスポンス
+
+> {
+> 
+> "id": 10,
+> 
+> "name": "アクターカタログ",
+> 
+> "description": null,
+> 
+> "callerActorCode": 1000XXX,
+> 
+> "approvalActorCode": 1000XXX,
+> 
+> "approver": "app-operator",
+> 
+> "approvalAt": "YYYY-MM-DDTHH:MM:SS.sss+0900",
+> 
+> "comment": null,
+> 
+> "status": 1,
+> 
+> "registerActorCode": 1000XXX,
+> 
+> "register": "app-operator",
+> 
+> "registAt": "YYYY-MM-DDTHH:MM:SS.sss+0900",
+> 
+> "ns": null,
+> 
+> "catalog": \[
+> 
+> {
+> 
+> "type": 2,
+> 
+> "catalogCode": null,
+> 
+> "comment": null,
+> 
+> "template": {
+> 
+> "catalogItem": {
+> 
+> "ns": "catalog/ext/{環境名}/actor/app",
+> 
+> "name": "～～アプリ運営事業者",
+> 
+> "\_code": {
+> 
+> "\_value": 1000XXX,
+> 
+> "\_ver": 2
+> 
+> },
+> 
+> "inherit": {
+> 
+> "\_value": 42,
+> 
+> "\_ver": 1
+> 
+> },
+> 
+> "description": "～～アプリ運営事業者の定義です。"
+> 
+> },
+> 
+> "template": {
+> 
+> "prop": null,
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_code",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "application",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "breakaway-flg",
+> 
+> "value": false
+> 
+> },
+> 
+> {
+> 
+> "key": "category",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "information-site",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "main-block",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "other-block",
+> 
+> "value": null
+> 
+> },
+> 
+> {
+> 
+> "key": "statement",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "title",
+> 
+> "value": "～～アプリ運営事業者のステートメント"
+> 
+> },
+> 
+> {
+> 
+> "key": "section",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "title",
+> 
+> "value": "～～アプリ運営事業者のステートメントの定義"
+> 
+> },
+> 
+> {
+> 
+> "key": "content",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "sentence",
+> 
+> "value": "～～アプリ運営事業者のステートメントの定義です。"
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "status",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "status",
+> 
+> "value": "certified"
+> 
+> },
+> 
+> {
+> 
+> "key": "by",
+> 
+> "value": \[
+> 
+> {
+> 
+> "key": "\_value",
+> 
+> "value": 1000XXX
+> 
+> },
+> 
+> {
+> 
+> "key": "\_ver",
+> 
+> "value": 1
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> {
+> 
+> "key": "at",
+> 
+> "value": "YYYY-MM-DDTHH:MM:SS.sss+0900"
+> 
+> }
+> 
+> \]
+> 
+> }
+> 
+> \]
+> 
+> },
+> 
+> "inner": null,
+> 
+> "attribute": null
+> 
+> }
+> 
+> }
+> 
+> \],
+> 
+> "appendix": \[\]
+> 
+> }
+
+###  6.7. <a name='My-Condition-Book'></a>**My-Condition-Bookの開設**
 
 １. 流通制御サービスプロバイダー：My-Condition-Bookの開設。
 
@@ -2777,7 +4826,7 @@ Region利用者連携バッチ」を参照してください。
 >
 > }
 
-###  6.7. <a name='RegionID'></a>**Regionとの利用者ID連携**
+###  6.8. <a name='RegionID'></a>**Regionとの利用者ID連携**
 
 １．流通制御サービスプロバイダー：オペレーターIDを取得。
 
@@ -3955,7 +6004,7 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 
 | サービス名称                  | API名称            | メソッドおよびパス                                                                        |
 |-------------------|-----------|-------------------------------------------|
-| My-Condition-Book管理サービス | Region利用規約同意 | POST /pxr-block-proxy/ind/?block=$pxr-root-block&path=/book-manage/ind/term_of_use/region |
+| My-Condition-Book管理サービス | Region利用規約同意 | POST /pxr-block-proxy/ind/?block=$pxr-root-block&path=/book-manage/term_of_use/region |
 
 リクエスト
 
@@ -3996,15 +6045,15 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 >
 > }
 
-###  6.8. <a name='ID'></a>**アプリケーションとの利用者ID連携**
+###  6.9. <a name='ID'></a>**アプリケーションとの利用者ID連携**
 
 １．個人：アプリケーションとの利用者ID連携申請。
 
-※事前に6.7.3 個人：ログインを実施すること。
+※事前に6.8.3 個人：ログインを実施すること。
 
 | サービス名称       | API名称    | メソッドおよびパス                                                             |
 |-------------------|----------|--------------------------------------------|
-| 本人性確認サービス | コード発行 | POST pxr-block-proxy/ind/?block=$pxr-root-block&path=/identity-verificate/code |
+| 本人性確認サービス | コード発行 | POST /pxr-block-proxy/ind/?block=$pxr-root-block&path=/identity-verificate/code |
 
 リクエスト
 
@@ -4072,10 +6121,16 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 >
 > "urlType": 1,
 >
-> "userId": "User00005" // 任意で設定可能、当箇所は3.
-> オペレータIDの取得のresponseのuserIdで設定
+> "userId": "User00005"
 >
 > }
+>
+> 【userIdについて】
+> 本APIのリクエストボディに指定する userId は、
+> アプリケーションP（サービス事業者）側で任意に採番・管理する利用者識別子です。URL発行APIのレスポンスから新規に払い出される値ではありません。
+> アプリケーションPは、自サービスで管理している利用者IDをリクエストボディのuserId に設定してください。
+>
+> 以降のAPIで利用する userId も、ここで指定した値と同一です。
 
 レスポンス
 
@@ -4091,7 +6146,7 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 
 ３．個人：リダイレクトの不正チェック。
 
-※事前に6.7.3 個人：ログインを実施すること。
+※事前に6.8.3 個人：ログインを実施すること。
 
 | サービス名称       | API名称     | メソッドおよびパス                                                                     |
 |-------------------|----------|--------------------------------------------|
@@ -4118,7 +6173,7 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 
 | サービス名称       | API名称                        | メソッドおよびパス                                                                    |
 |-------------------|----------|--------------------------------------------|
-| 本人性確認サービス | 個人による本人性確認コード照合 | POST pxr-block-proxy/ind/?block=$pxr-root-block&path=/identity-verificate/ind/collate |
+| 本人性確認サービス | 個人による本人性確認コード照合 | POST /pxr-block-proxy/ind/?block=$pxr-root-block&path=/identity-verificate/collate |
 
 リクエスト
 
@@ -4162,7 +6217,7 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 
 | サービス名称     | API名称      | メソッドおよびパス                                                              |
 |-------------------|----------|--------------------------------------------|
-| Book管理サービス | 利用者ID連携 | POST pxr-block-proxy/ind/?block=$pxr-root-block&path=/book-manage/ind/cooperate |
+| Book管理サービス | 利用者ID連携 | POST /pxr-block-proxy/ind/?block=$pxr-root-block&path=/book-manage/cooperate |
 
 リクエスト
 
@@ -4207,241 +6262,78 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 >
 > }
 
-６. 個人：連携状況を確認。
+６. 流統制御サービスプロバイダー：利用者ID連携情報を確認。
 
-| サービス名称     | API名称 | メソッドおよびパス                                                   |
-|-------------------|----------|--------------------------------------------|
-| Book管理サービス |         | GET pxr-block-proxy/ind/?block=$pxr-root-block&path=/book-manage/ind |
+※事前に6.3.3流統制御サービスプロバイダー：ログインを実施すること。
+
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 34%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>サービス名称</th>
+<th>API名称</th>
+<th>メソッドおよびパス</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Book管理サービス</td>
+<td>My-Condition-Book一覧取得</td>
+<td><p>POST</p>
+<p>/pxr-block-proxy/pxr-block-proxy/?path= /book-manage/search</p></td>
+</tr>
+</tbody>
+</table>
 
 リクエスト
+```
+{
+  "pxrId": {6.9.1～6.9.5のログイン利用者のPxRID},
+  "createdAt": {
+    "start": "YYYY-MM-DD HH:MM:SS",
+    "end": "YYYY-MM-DD HH:MM:SS"
+  }
+}
 
-> なし
+※PxRIDは配列[]での指定も可能
+```
+レスポンス例
+```
+[
+  {
+    "pxrId": {6.9.1～6.9.5のログイン利用者のPxRID},
+    "status": 0,
+    "attributes": {
+      "key": "value"
+    },
+    "cooperation": [
+      {
+        "actor": {
+          "_value": 1000XXX,
+          "_ver": 1
+        },
+        "region": null,
+        "app": null,
+        "wf": {
+          "_value": 1000XXX,
+          "_ver": 1
+        },
+        "userId": "xxxxxxxx",
+        "startAt": null,
+        "status": 0
+      }
+    ],
+    "userInformation": --- 省略 ---
+  }
+]
+```
+※「cooperation」のレスポンス部分が、利用者ID連携情報を示す。
 
-レスポンス
-
-> {
->
-> "status": 0,
->
-> "identification": \[
->
-> {
->
-> "\_code": {
->
-> "\_value": 30001,
->
-> "\_ver": 1
->
-> },
->
-> "item-group": \[
->
-> {
->
-> "title": "氏名",
->
-> "item": \[
->
-> {
->
-> "title": "姓",
->
-> "type": {
->
-> "\_value": 30019,
->
-> "\_ver": 1
->
-> },
->
-> "content": "サンプル"
->
-> },
->
-> {
->
-> "title": "名",
->
-> "type": {
->
-> "\_value": 30020,
->
-> "\_ver": 1
->
-> },
->
-> "content": "太郎"
->
-> }
->
-> \]
->
-> },
->
-> {
->
-> "title": "性別",
->
-> "item": \[
->
-> {
->
-> "title": "性別",
->
-> "type": {
->
-> "\_value": 30021,
->
-> "\_ver": 1
->
-> },
->
-> "content": "男"
->
-> }
->
-> \]
->
-> },
->
-> {
->
-> "title": "生年月日",
->
-> "item": \[
->
-> {
->
-> "title": "生年月日",
->
-> "type": {
->
-> "\_value": 30022,
->
-> "\_ver": 1
->
-> },
->
-> "content": "2000-01-01"
->
-> }
->
-> \]
->
-> }
->
-> \]
->
-> }
->
-> \],
->
-> "cooperation": \[
->
-> {
->
-> "actor": {
->
-> "\_value": 1000783,
->
-> "\_ver": 3
->
-> },
->
-> "region": {
->
-> "\_value": 1000816,
->
-> "\_ver": 11
->
-> },
->
-> "userId": null,
->
-> "status": 0 //
-> Regionの連携状況、凡例：0（申請中）、1（連携中）、2（解除）★statusが0である場合、連携バッチが未実行の可能性あり
->
-> },
->
-> {
->
-> "actor": {
->
-> "\_value": 1000787,
->
-> "\_ver": 3
->
-> },
->
-> "app": {
->
-> "\_value": 1000879,
->
-> "\_ver": 7
->
-> },
->
-> "userId": "User00005",
->
-> "status": 1 //
-> APPの連携状況、凡例：0（申請中）、1（連携中）、2（解除）★statusが0である場合、連携バッチが未実行の可能性あり
->
-> }
->
-> }
->
-> \],
->
-> "termsOfUse": {
->
-> "platform": {
->
-> "\_value": 1000782,
->
-> "\_ver": 1
->
-> },
->
-> "region": \[
->
-> {
->
-> "actor": {
->
-> "\_value": 1000783,
->
-> "\_ver": 3
->
-> },
->
-> "region": {
->
-> "\_value": 1000816,
->
-> "\_ver": 11
->
-> },
->
-> "\_code": {
->
-> "\_value": 1000815,
->
-> "\_ver": 1
->
-> }
->
-> }
->
-> \]
->
-> },
->
-> "appendix": {}
->
-> }
-
-###  6.9. <a name='-1'></a>**蓄積の定義**
+###  6.10. <a name='-1'></a>**蓄積の定義**
 
 １．流通制御サービスプロバイダー：蓄積コードを取得。
 
@@ -4463,8 +6355,7 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 <td>カタログサービス</td>
 <td>カタログ取得(code指定)</td>
 <td><p>GET catalog/{code}</p>
-<p>{code}：カタログ項目コード、6.4.8.
-連携状況確認のresponseのappコードを利用</p></td>
+<p>{code}：カタログ項目コード、6.9.６で取得した利用者ID連携情報のresponseのappコードを利用</p></td>
 </tr>
 </tbody>
 </table>
@@ -5608,9 +7499,9 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 
 | サービス名称     | API名称            | メソッドおよびパス                                                               |
 |-------------------|----------|--------------------------------------------|
-| Book管理サービス | データ蓄積定義追加 | POST pxr-block-proxy/ind/?block=$pxr-root-block&path=/book-manage/settings/store |
+| Book管理サービス | データ蓄積定義追加 | POST /pxr-block-proxy/ind/?block=$pxr-root-block&path=/book-manage/settings/store |
 
-※事前に6.7.3 個人：ログインを実施すること。
+※事前に6.8.3 個人：ログインを実施すること。
 
 リクエスト　※storeCatalogIdの数分呼び出す必要がある。
 
@@ -5618,7 +7509,7 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 >
 > "actor": {
 >
-> "\_value": 1000787, // 6.4.8 連携状況確認のresponseから取得
+> "\_value": 1000787, // 6.9.６で取得した利用者ID連携情報のresponseから取得
 >
 > "\_ver": 3
 >
@@ -5626,7 +7517,7 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 >
 > "app": {
 >
-> "\_value": 1000879, // 6.4.8 連携状況確認のresponseから取得
+> "\_value": 1000879, // 6.9.６で取得した利用者ID連携情報のresponseから取得
 >
 > "\_ver": 7
 >
@@ -5897,7 +7788,7 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 >
 > \]
 
-###  6.10. <a name='-1'></a>**共有の定義**
+###  6.11. <a name='-1'></a>**共有の定義**
 
 １．流通制御サービスプロバイダー：共有コードを取得。
 
@@ -5919,8 +7810,7 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 <td>カタログサービス</td>
 <td>カタログ取得(code指定)</td>
 <td><p>GET catalog/{code}</p>
-<p>{code}：カタログ項目コード、6.4.8.
-連携状況確認のresponseのappコードを利用</p></td>
+<p>{code}：カタログ項目コード、6.9.６で取得した利用者ID連携情報のresponseのappコードを利用</p></td>
 </tr>
 </tbody>
 </table>
@@ -6842,7 +8732,7 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 
 | サービス名称     | API名称            | メソッドおよびパス                                                                  |
 |-------------------|----------|--------------------------------------------|
-| Book管理サービス | データ共有定義追加 | POST pxr-block-proxy/ind/?block=$pxr-root-block&path=/book-manage/ind/setting/share |
+| Book管理サービス | データ共有定義追加 | POST /pxr-block-proxy/ind/?block=$pxr-root-block&path=/book-manage/setting/share |
 
 ※事前に6.3.3個人：ログインを実施すること。
 
@@ -6852,7 +8742,7 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 >
 > "actor": {
 >
-> "\_value": 1000787, // 6.4.8 連携状況確認のresponseから取得
+> "\_value": 1000787, // 6.9.６で取得した利用者ID連携情報のresponseから取得
 >
 > "\_ver": 3
 >
@@ -6860,7 +8750,7 @@ Region利用者ID連携のrequestのregionコードを利用</p></td>
 >
 > "app": {
 >
-> "\_value": 1000879, // 6.4.8 連携状況確認のresponseから取得
+> "\_value": 1000879, // 6.9.６で取得した利用者ID連携情報のresponseから取得
 >
 > "\_ver": 7
 >
@@ -7019,7 +8909,7 @@ book-manage/ind/setting/share?id={userId}&amp;app={appCode}</p>
 >
 > \]
 
-###  6.11. <a name='My-Condition-Data'></a>**My-Condition-Dataの蓄積**
+###  6.12. <a name='My-Condition-Data'></a>**My-Condition-Dataの蓄積**
 
 １．アプリケーションプロバイダー：利用者一覧を取得。
 
@@ -7961,7 +9851,7 @@ book-manage/ind/setting/share?id={userId}&amp;app={appCode}</p>
 >
 > }
 
-###  6.12. <a name='My-Condition-Data-1'></a>**My-Condition-Dataの共有**
+###  6.13. <a name='My-Condition-Data-1'></a>**My-Condition-Dataの共有**
 
 事前に6.8.1アプリケーションプロバイダー：ログインを実施すること。
 
@@ -8501,7 +10391,7 @@ book-manage/ind/setting/share?id={userId}&amp;app={appCode}</p>
 >
 > }
 
-###  6.13. <a name='-1'></a>**個人の離脱**
+###  6.14. <a name='-1'></a>**個人の離脱**
 
 １．流通制御サービスプロバイダー：Book閉鎖を実施。
 
@@ -8543,17 +10433,17 @@ book-manage/ind/setting/share?id={userId}&amp;app={appCode}</p>
 >
 > }
 
-###  6.14. <a name='Region-1'></a>**Region終了**
+###  6.15. <a name='Region-1'></a>**Region終了**
 
 別紙『パーソナルデータ連携モジュール
 利用設定手順書』の「5.PxR-Blockの削除方法」を参照してください。
 
-###  6.15. <a name='-1'></a>**アクター終了**
+###  6.16. <a name='-1'></a>**アクター終了**
 
 別紙『パーソナルデータ連携モジュール
 利用設定手順書』の「5.PxR-Blockの削除方法」を参照してください。
 
-###  6.16. <a name='-1'></a>**【参考】データカタログの取得**
+###  6.17. <a name='-1'></a>**【参考】データカタログの取得**
 
 １．最新テンプレートを取得する例。
 
